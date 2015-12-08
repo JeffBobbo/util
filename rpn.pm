@@ -39,14 +39,14 @@ my $operators = {
   # bitwise
   '<<'  => { ops => 2, fn => sub { return $_[0] << $_[1]} },
   '>>'  => { ops => 2, fn => sub { return $_[0] >> $_[1]} },
-  'AND' => { ops => 2, fn => sub { return $_[0] & $_[0] } },
-  'OR'  => { ops => 2, fn => sub { return $_[0] | $_[0] } },
-  'XOR' => { ops => 2, fn => sub { return $_[0] ^ $_[0] } },
+  'AND' => { ops => 2, fn => sub { return $_[0] & $_[1] } },
+  'OR'  => { ops => 2, fn => sub { return $_[0] | $_[1] } },
+  'XOR' => { ops => 2, fn => sub { return $_[0] ^ $_[1] } },
   'NOT' => { ops => 1, fn => sub { return ~$_[0] } },
 
   # special functions
-  'min' => { ops => 2, fn => sub { return $_[0] < $_[1] ? $_[0] : $_[1] } },
-  'max' => { ops => 2, fn => sub { return $_[0] > $_[1] ? $_[0] : $_[1] } },
+  'min' => { ops => 2, fn => sub { return $_($_[0] < $_[1] ? 0 : 1) } },
+  'max' => { ops => 2, fn => sub { return $_($_[0] > $_[1] ? 0 : 1) } },
   'deg'  => { ops => 1, fn => sub { return $_[0] * 180 / Pi() } },
   'rad'  => { ops => 1, fn => sub { return $_[0] * Pi() / 180 } },
   'last' => { ops => 0, fn => sub { return defined $last ? $last : 0 } },
