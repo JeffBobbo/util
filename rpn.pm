@@ -15,7 +15,7 @@ sub Pi
 sub factorial
 {
   my $n = shift();
-  my $r = 1;
+  my $r = $n;
   my $i = 1;
   $r *= $i while (++$i < $n);
   return $r;
