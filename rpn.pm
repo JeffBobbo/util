@@ -21,6 +21,24 @@ sub factorial
   return $r;
 }
 
+sub gcd
+{
+  my $a = shift();
+  my $b = shift();
+  while ($a != 0 && $b != 0)
+  {
+    if ($a > $b)
+    {
+      $a %= $b;
+    }
+    else
+    {
+      $b %= $a;
+    }
+  }
+  return $a || $b;
+}
+
 my $last;
 
 my $operators = {
@@ -61,6 +79,7 @@ my $operators = {
   'rad'  => { ops => 1, fn => sub { return $_[0] * Pi() / 180 } },
   'last' => { ops => 0, fn => sub { return defined $last ? $last : 0 } },
   'time' => { ops => 0, fn => sub { return time() } },
+  'gcd'  => { ops => 2, fn => sub { return gcd($_[0], $_[1]) } },
 
   #constants
   'pi' => { ops => 0, fn => sub { return Pi() } },
