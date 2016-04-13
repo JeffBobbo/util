@@ -36,7 +36,7 @@ sub doAlerts
         my $time = $when - $now;
         if ($time > 0 && (@{$json->{$cd}{rAlerts}} == 0 || $now + @{$json->{$cd}{rAlerts}}[0] <= $when))
         {
-          my $str = $json->{$cd}{desc} . ' (' . $cd . ') is in ' . humanTime($time) . '.';
+          my $str = "\x0304" . $json->{$cd}{desc} . ' (' . $cd . ') is in ' . humanTime($time) . '.';
           if (defined $json->{$cd}{channel})
           {
             $main::irc->yield('privmsg', $json->{$cd}{channel}, $str);
@@ -299,6 +299,6 @@ sub auth
 BobboBot::module::addCommand('countdown', 'run', \&BobboBot::countdown::run);
 BobboBot::module::addCommand('countdown', 'help', \&BobboBot::countdown::help);
 BobboBot::module::addCommand('countdown', 'auth', \&BobboBot::countdown::auth);
-BobboBot::module::addEvent('AUTO', \&BobboBot::countdown::doAlerts, 30);
+BobboBot::module::addEvent('AUTO', \&BobboBot::countdown::doAlerts, 10);
 
 1;
